@@ -1,4 +1,4 @@
-#phpenv-cookbook Cookbook
+#phpenv-cookbook Cookbook | [![Build Status](https://travis-ci.org/Numergy/phpenv-cookbook.svg?branch=master)](https://travis-ci.org/Numergy/phpenv-cookbook)
 
 Manage installation of multiple PHP versions via [phpenv][phpenv] and [php-build][php-build]. Also provides a set of lightweight resources and providers.
 
@@ -432,5 +432,6 @@ Authors:
 
 [script_resource]:  http://docs.opscode.com/resource_script.html
 [rbenv]:            https://github.com/sstephenson/rbenv
+[pyenv]:            https://github.com/yyuu/pyenv
 [phpenv]:           https://github.com/CHH/phpenv
 [php-build]:        https://github.com/CHH/php-build

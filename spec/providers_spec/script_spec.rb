@@ -46,6 +46,8 @@ describe 'Chef::Provider::PhpenvScript' do
   end
 
   it 'should run phpenv script with parameters' do
+    CustomDir = Struct.new(:dir)
+    Etc.should_receive(:getpwnam).with('got').and_return(CustomDir.new('/home/got'))
     @resource.send('root_path', '/home/got')
     @resource.send('user', 'got')
     @resource.send('returns', [0, 1])
