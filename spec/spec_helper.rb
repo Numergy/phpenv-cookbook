@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+
+$LOAD_PATH << File.expand_path('../providers', __FILE__)
+$LOAD_PATH << File.expand_path('../libraries', __FILE__)
+$LOAD_PATH << File.expand_path('../resources', __FILE__)
+
+require 'rspec/expectations'
+require 'chefspec'
+require 'chefspec/berkshelf'
+require 'chef/application'
+
+ChefSpec::Coverage.start! { add_filter 'phpenv' }
+RSpec.configure do |config|
+  config.mock_with :rspec do |mocks|
+    mocks.syntax = :should
+  end
+  config.path = File.expand_path('ohai.json', File.dirname(__FILE__))
+end
+
+# Following code is based on the chef-user repository
+# Link: https://github.com/fnichol/chef-user/blob/master/test/spec_helper.rb
+# Load custom resource
+module ResourceMixins
+  def load_resource(cookbook, lwrp)
+    Chef::Resource::LWRPBase.build_from_file(cookbook, File.expand_path(File.join(
+      File.dirname(__FILE__), '../resources', "#{lwrp}.rb")), nil)
+  end
+
+  def unload_resource(cookbook, lwrp)
+    Chef::Resource.send(:remove_const, lwrp_const(cookbook, lwrp))
+  end
+
+  def resource_klass(cookbook, lwrp)
+    Chef::Resource.const_get(lwrp_const(cookbook, lwrp))
+  end
+
+  def lwrp_const(cookbook, lwrp)
+    "#{cookbook.capitalize}#{lwrp.capitalize}"
+  end
+end

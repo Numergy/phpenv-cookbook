@@ -1,0 +1,36 @@
+{
+  "hostname": "precise64",
+  "fqdn": "precise64",
+  "platform": "ubuntu",
+  "platform_version": "12.04",
+  "platform_family": "debian",
+  "etc": {
+    "passwd": {
+      "root": {
+        "dir": "/root",
+        "gid": 0,
+        "uid": 0,
+        "shell": "/bin/bash"
+      },
+      "got": {
+        "dir": "/home/got",
+        "gid": 1,
+        "uid": 1,
+        "shell": "/bin/bash"
+      }
+    },
+    "group": {
+      "root": {
+        "gid": 0,
+        "members": [
+        ]
+      },
+      "admin": {
+        "gid": 1,
+        "members": [
+          "got"
+        ]
+      }
+    }
+  }
+}
