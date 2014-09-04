@@ -27,35 +27,58 @@ node['phpenv']['packages'].each do |pkg|
   end
 end
 
+group node['phpenv']['group'] do
+  members node['phpenv']['group_users'] if node['phpenv']['group_users']
+end
+
+user node['phpenv']['user'] do
+  shell '/bin/bash'
+  group node['phpenv']['group']
+  supports manage_home: node['phpenv']['manage_home']
+  home node['phpenv']['user_home']
+end
+
 git '/tmp/phpenv' do
   user node['phpenv']['user']
-  repository node['phpenv']['repository']
-  action :sync if node['phpenv']['force_update']
-  action :checkout unless node['phpenv']['force_update']
+  group node['phpenv']['group']
+  repository node['phpenv']['git_repository']
+  reference node['phpenv']['git_reference']
+  action :sync if node['phpenv']['git_force_update']
+  action :checkout unless node['phpenv']['git_force_update']
 end
 
 dst_dir = node['phpenv']['root_path']
+directory dst_dir do
+  group node['phpenv']['group']
+  user node['phpenv']['user']
+  recursive true
+end
+
 execute 'install-phpenv' do
+  group node['phpenv']['group']
   user node['phpenv']['user']
   cwd '/tmp/phpenv/bin'
-  command "su #{node['phpenv']['user']} -c ./phpenv-install.sh"
+  command './phpenv-install.sh'
   environment 'PHPENV_ROOT' => dst_dir if dst_dir
   not_if do
-    File.exist?(dst_dir)
+    File.exist?(File.join(dst_dir, 'bin', 'phpenv'))
   end
 end
 
 plugins_dir = "#{dst_dir}/plugins"
 directory plugins_dir do
+  group node['phpenv']['group']
   owner node['phpenv']['user']
   action :create
 end
 
 git "#{plugins_dir}/php-build" do
   user node['phpenv']['user']
-  repository node['phpenv']['php-build']['repository']
-  action :sync if node['phpenv']['php-build']['force_update']
-  action :checkout unless node['phpenv']['php-build']['force_update']
+  group node['phpenv']['group']
+  repository node['phpenv']['php-build']['git_repository']
+  reference node['phpenv']['php-build']['git_reference']
+  action :sync if node['phpenv']['php-build']['git_force_update']
+  action :checkout unless node['phpenv']['php-build']['git_force_update']
 end
 
 template '/etc/profile.d/phpenv.sh' do

@@ -39,10 +39,19 @@ describe file('/tmp/phpenv') do
   it { should be_directory }
 end
 
-%w(/usr/local/phpenv/plugins /usr/local/phpenv /usr/local/phpenv/plugins/php-build).each do |dir_name|
+describe user('phpenv') do
+  it { should exist }
+  it { should belong_to_group('phpenv') }
+end
+
+describe group('phpenv') do
+  it { should exist }
+end
+
+%w(/home/phpenv /opt/phpenv/plugins /opt/phpenv /opt/phpenv/plugins/php-build).each do |dir_name|
   describe file(dir_name) do
     it { should be_directory }
-    it { should be_owned_by 'root' }
+    it { should be_owned_by 'phpenv' }
   end
 end
 
@@ -54,10 +63,10 @@ end
 
 describe file('/tmp/testfile') do
   it { should be_file }
-  it { should be_owned_by 'root' }
+  it { should be_owned_by 'phpenv' }
   it { should contain('awesome content') }
 end
 
-describe command('/usr/local/phpenv/bin/phpenv global') do
+describe command('/opt/phpenv/bin/phpenv global') do
   it { should return_stdout '5.4.0' }
 end

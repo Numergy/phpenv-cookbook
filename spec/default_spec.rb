@@ -46,26 +46,49 @@ describe 'phpenv::default' do
     it 'should clone phpenv' do
       expect(subject).to checkout_git('/tmp/phpenv').with(
         repository: 'https://github.com/CHH/phpenv.git',
-        user: 'root'
+        reference: 'master',
+        user: 'phpenv'
+      )
+    end
+
+    it 'should create user' do
+      expect(subject).to create_user('phpenv').with(
+        group: 'phpenv',
+        shell: '/bin/bash',
+        supports: { manage_home: true },
+        home: '/home/phpenv'
+      )
+    end
+
+    it 'should create group' do
+      expect(subject).to create_group('phpenv').with(
+        members: []
       )
     end
 
     it 'should install phpenv' do
       expect(subject).to run_execute('install-phpenv').with(
         cwd: '/tmp/phpenv/bin',
-        command: 'su root -c ./phpenv-install.sh',
-        user: 'root'
+        command: './phpenv-install.sh',
+        user: 'phpenv'
       )
 
-      expect(subject).to create_directory('/usr/local/phpenv/plugins').with(
-        owner: 'root'
+      expect(subject).to create_directory('/opt/phpenv').with(
+        owner: 'phpenv',
+        group: 'phpenv',
+        recursive: true
+      )
+
+      expect(subject).to create_directory('/opt/phpenv/plugins').with(
+        owner: 'phpenv'
       )
     end
 
     it 'should clone phpenv' do
-      expect(subject).to checkout_git('/usr/local/phpenv/plugins/php-build').with(
+      expect(subject).to checkout_git('/opt/phpenv/plugins/php-build').with(
         repository: 'https://github.com/CHH/php-build.git',
-        user: 'root'
+        reference: 'master',
+        user: 'phpenv'
       )
     end
 
@@ -82,35 +105,69 @@ describe 'phpenv::default' do
     let(:subject) do
       ChefSpec::Runner.new do |node|
         node.set['phpenv']['root_path'] = '/home/got/.phpenv'
+        node.set['phpenv']['group_users'] = ['vagrant']
         node.set['phpenv']['user'] = 'got'
-        node.set['phpenv']['force_update'] = true
-        node.set['phpenv']['php-build']['force_update'] = true
+        node.set['phpenv']['user_home'] = '/home/got'
+        node.set['phpenv']['manage_home'] = false
+        node.set['phpenv']['group'] = 'got'
+        node.set['phpenv']['git_force_update'] = true
+        node.set['phpenv']['git_reference'] = 'dev'
+        node.set['phpenv']['php-build']['git_force_update'] = true
         node.set['phpenv']['create_profiled'] = false
+        node.set['phpenv']['php-build']['git_reference'] = 'dev'
       end.converge(described_recipe)
     end
+
     it 'should clone phpenv' do
       expect(subject).to sync_git('/tmp/phpenv').with(
         repository: 'https://github.com/CHH/phpenv.git',
-        user: 'got'
+        reference: 'dev',
+        user: 'got',
+        group: 'got'
+      )
+    end
+
+    it 'should create group' do
+      expect(subject).to create_group('got').with(
+        members: ['vagrant']
+      )
+    end
+
+    it 'should create user' do
+      expect(subject).to create_user('got').with(
+        group: 'got',
+        shell: '/bin/bash',
+        supports: { manage_home: false },
+        home: '/home/got'
       )
     end
 
     it 'should install phpenv' do
       expect(subject).to run_execute('install-phpenv').with(
         cwd: '/tmp/phpenv/bin',
-        command: 'su got -c ./phpenv-install.sh',
-        user: 'got'
+        command: './phpenv-install.sh',
+        user: 'got',
+        group: 'got'
+      )
+
+      expect(subject).to create_directory('/home/got/.phpenv').with(
+        owner: 'got',
+        group: 'got',
+        recursive: true
       )
 
       expect(subject).to create_directory('/home/got/.phpenv/plugins').with(
-        owner: 'got'
+        owner: 'got',
+        group: 'got'
       )
     end
 
     it 'should clone phpenv' do
       expect(subject).to sync_git('/home/got/.phpenv/plugins/php-build').with(
         repository: 'https://github.com/CHH/php-build.git',
-        user: 'got'
+        reference: 'dev',
+        user: 'got',
+        group: 'got'
       )
     end
 

@@ -8,3 +8,7 @@ version '0.1.0'
 
 depends 'apt'
 depends 'build-essential'
+
+%w( debian ubuntu ).each do |os|
+  supports os
+end

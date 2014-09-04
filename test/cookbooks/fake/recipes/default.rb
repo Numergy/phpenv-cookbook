@@ -9,4 +9,6 @@ end
 
 phpenv_script 'execute-php-script' do
   code '/tmp/awesome-script.php'
+  root_path node['phpenv']['root_path']
+  user 'phpenv'
 end

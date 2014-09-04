@@ -18,13 +18,21 @@
 # limitations under the License.
 #
 
-default['phpenv']['user'] = 'root'
-default['phpenv']['root_path'] = '/usr/local/phpenv'
+default['phpenv']['user'] = 'phpenv'
+default['phpenv']['user_home'] = '/home/phpenv'
+default['phpenv']['manage_home'] = true
+
+default['phpenv']['group'] = 'phpenv'
+default['phpenv']['group_users'] = []
+
+default['phpenv']['root_path'] = '/opt/phpenv'
 default['phpenv']['create_profiled'] = true
-default['phpenv']['force_update'] = false
-default['phpenv']['repository'] = 'https://github.com/CHH/phpenv.git'
-default['phpenv']['php-build']['force_update'] = false
-default['phpenv']['php-build']['repository'] = 'https://github.com/CHH/php-build.git'
+default['phpenv']['git_force_update'] = false
+default['phpenv']['git_repository'] = 'https://github.com/CHH/phpenv.git'
+default['phpenv']['git_reference'] = 'master'
+default['phpenv']['php-build']['git_force_update'] = false
+default['phpenv']['php-build']['git_repository'] = 'https://github.com/CHH/php-build.git'
+default['phpenv']['php-build']['git_reference'] = 'master'
 
 case platform
 when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'

@@ -12,91 +12,99 @@ If you've used [rbenv][rbenv] or [pyenv][pyenv], this is a port of that concept 
 
 ## Attributes
 
-Default user
-
-```ruby
-default['phpenv']['user'] = 'root'
-```
-
-Default path to install phpenv
-
-```ruby
-default['phpenv']['root_path'] = '/usr/local/phpenv'
-```
-
-Create file in profile.d
-
-```ruby
-default['phpenv']['create_profiled'] = true
-```
-
-Force update phpenv git repository
-
-```ruby
-default['phpenv']['force_update'] = false
-```
-
-Git repository for phpenv
-
-```ruby
-default['phpenv']['repository'] = 'https://github.com/CHH/phpenv.git'
-```
-
-Force update php-build git repository
-
-```ruby
-default['phpenv']['php-build']['force_update'] = false
-```
-
-Git repository for php-build
-
-```ruby
-default['phpenv']['php-build']['repository'] = 'https://github.com/CHH/php-build.git'
-```
-
-Packages to install
-
-```ruby
-case platform
-when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
-  default['phpenv']['packages'] = %w(
-    git
-  )
-when 'debian', 'ubuntu', 'suse'
-  default['phpenv']['packages'] = %w(
-    re2c
-    libsqlite0-dev
-    libxml2-dev
-    libpcre3-dev
-    libbz2-dev
-    libcurl4-openssl-dev
-    libdb4.8-dev
-    libjpeg-dev
-    libpng12-dev
-    libxpm-dev
-    libfreetype6-dev
-    libmysqlclient-dev
-    postgresql-server-dev-all
-    libt1-dev
-    libgd2-xpm-dev
-    libgmp-dev
-    libsasl2-dev
-    libmhash-dev
-    unixodbc-dev
-    freetds-dev
-    libpspell-dev
-    libsnmp-dev
-    libtidy-dev
-    libxslt1-dev
-    libmcrypt-dev
-    git
-  )
-when 'freebsd'
-  default['phpenv']['packages'] = %w(
-    git
-  )
-end
-```
+#### phpenv::default
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td><tt>['phpenv']['user']</tt></td>
+    <td>String</td>
+    <td>Default user</td>
+    <td><tt>phpenv</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['phpenv']['user_home']</tt></td>
+    <td>String</td>
+    <td>User home</td>
+    <td><tt>/home/phpenv</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['phpenv']['manage_home']</tt></td>
+    <td>Boolean</td>
+    <td>Manage home</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['phpenv']['group']</tt></td>
+    <td>String</td>
+    <td>Group to used</td>
+    <td><tt>phpenv</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['phpenv']['group_users']</tt></td>
+    <td>Array</td>
+    <td>User in the group</td>
+    <td><tt>[]</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['phpenv']['root_path']</tt></td>
+    <td>String</td>
+    <td>Path to install phpenv</td>
+    <td><tt>/opt/phpenv</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['phpenv']['create_profiled']</tt></td>
+    <td>Boolean</td>
+    <td>Create file in profile.d</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['phpenv']['git_force_update']</tt></td>
+    <td>Boolean</td>
+    <td>Force update phpenv git repository</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['phpenv']['git_repository']</tt></td>
+    <td>String</td>
+    <td>Git repository for phpenv</td>
+    <td><tt>https://github.com/CHH/phpenv.git</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['phpenv']['git_reference']</tt></td>
+    <td>String</td>
+    <td>Git reference for the git repository</td>
+    <td><tt>master</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['phpenv']['php-build']['git_force_update']</tt></td>
+    <td>Boolean</td>
+    <td>Force update php-build git repository</td>
+    <td><tt>true</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['phpenv']['php-build']['git_repository']</tt></td>
+    <td>String</td>
+    <td>Git repository for php-build</td>
+    <td><tt>https://github.com/CHH/php-build.git</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['phpenv']['php-build']['git_reference']</tt></td>
+    <td>String</td>
+    <td>Git reference for the git repository</td>
+    <td><tt>master</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['phpenv']['php-build']['packages']</tt></td>
+    <td>Array</td>
+    <td>Packages to install</td>
+    <td><tt>git</tt></td>
+  </tr>
+</table>
 
 ## Resources and providers
 
@@ -427,6 +435,7 @@ end
 ## License and Authors
 
 Authors:
+
  - Pierre Rambaud (pierre.rambaud@numergy.com)
 
 
