@@ -1,16 +1,16 @@
-#phpenv-cookbook Cookbook | [![Build Status](https://travis-ci.org/Numergy/phpenv-cookbook.svg?branch=master)](https://travis-ci.org/Numergy/phpenv-cookbook)
+# phpenv Cookbook | [![Build Status](https://travis-ci.org/Numergy/phpenv-cookbook.svg?branch=master)](https://travis-ci.org/Numergy/phpenv-cookbook)
 
 Manage installation of multiple PHP versions via [phpenv][phpenv] and [php-build][php-build]. Also provides a set of lightweight resources and providers.
 
 If you've used [rbenv][rbenv] or [pyenv][pyenv], this is a port of that concept for PHP.
 
-#Requirements
+# Requirements
 
 - `build-essential`
 - `apt`
 
 
-##Attributes
+## Attributes
 
 Default user
 
@@ -98,9 +98,9 @@ when 'freebsd'
 end
 ```
 
-##Resources and providers
+## Resources and providers
 
-###phpenv_build
+### phpenv_build
 This resource installs a specified version of PHP.
 
 #### Actions
@@ -415,7 +415,7 @@ phpenv_global '5.4.0' do
 end
 ```
 
-##Contributing
+## Contributing
 
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
@@ -424,7 +424,7 @@ end
 5. Run the tests, ensuring they all pass
 6. Submit a Pull Request using Github
 
-##License and Authors
+## License and Authors
 
 Authors:
  - Pierre Rambaud (pierre.rambaud@numergy.com)
