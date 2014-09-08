@@ -180,13 +180,13 @@ This resource installs a specified version of PHP.
 ##### Install PHP 5.3.28
 
 ```ruby
-phpenv_php '5.3.28' do
+phpenv_build '5.3.28' do
   action :install
 end
 ```
 
 ```ruby
-phpenv_php '5.3.28'
+phpenv_build '5.3.28'
 ```
 
 **Note:** the install action is default, so the second example is a more common usage.
@@ -331,7 +331,7 @@ phpenv_script 'reload-cache' do
   phpenv_version '5.4.0'
   user           'deploy'
   group          'deploy'
-  cwd            '/opt/shared
+  cwd            '/opt/shared'
   code           './reload-cache.php'
 end
 ```
