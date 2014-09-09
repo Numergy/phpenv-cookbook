@@ -53,11 +53,6 @@ def build_script_code
   script.join("\n")
 end
 
-def build_base_path
-  return new_resource.cwd if new_resource.cwd
-  ''
-end
-
 def build_script_environment
   script_env = { 'PHPENV_ROOT' => phpenv_root }
   script_env.merge!(new_resource.environment) if new_resource.environment
