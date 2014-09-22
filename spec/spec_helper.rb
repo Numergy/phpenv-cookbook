@@ -11,6 +11,7 @@ require 'chef/application'
 
 ChefSpec::Coverage.start! { add_filter 'phpenv' }
 RSpec.configure do |config|
+  config.log_level = :error
   config.mock_with :rspec do |mocks|
     mocks.syntax = :should
   end

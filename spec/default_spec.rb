@@ -18,7 +18,7 @@ describe 'phpenv::default' do
         libpcre3-dev
         libbz2-dev
         libcurl4-openssl-dev
-        libdb4.8-dev
+        libdb-dev
         libjpeg-dev
         libpng12-dev
         libxpm-dev
