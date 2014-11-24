@@ -28,6 +28,8 @@ require 'spec_helper'
   libtidy-dev
   libxslt1-dev
   libmcrypt-dev
+  libssl-dev
+  libreadline-dev
   git
 ).each do |pkg|
   describe package(pkg) do

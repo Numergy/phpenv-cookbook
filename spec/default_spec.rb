@@ -37,6 +37,8 @@ describe 'phpenv::default' do
         libtidy-dev
         libxslt1-dev
         libmcrypt-dev
+        libssl-dev
+        libreadline-dev
         git
       ).each do |pkg|
         expect(subject).to install_package(pkg)

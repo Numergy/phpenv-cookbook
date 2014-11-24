@@ -66,6 +66,8 @@ when 'debian', 'ubuntu', 'suse'
     libtidy-dev
     libxslt1-dev
     libmcrypt-dev
+    libssl-dev
+    libreadline-dev
     git
   )
 when 'freebsd'
