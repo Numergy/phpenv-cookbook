@@ -23,3 +23,6 @@ LineLength:
 
 WordArray:
   MinSize: 3
+
+Metrics/AbcSize:
+  Enabled: false
