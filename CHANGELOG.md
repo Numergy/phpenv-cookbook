@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the phpenv cookbook.
 
+## 0.4.0
+
+- [Pierre Rambaud] - Add libssl and libreadline packages
+
 ## 0.3.0
 
 - [Pierre Rambaud] - Fix bug on ubuntu 14.04
