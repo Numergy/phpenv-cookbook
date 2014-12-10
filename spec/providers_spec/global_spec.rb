@@ -13,7 +13,7 @@ describe 'Chef::Provider::PhpenvGlobal' do
   end
 
   before do
-    @runner = ChefSpec::Runner.new do |node|
+    @runner = ChefSpec::ServerRunner.new do |node|
       node.set['phpenv']['root_path'] = '/home/got/.phpenv'
     end.converge('phpenv')
   end
