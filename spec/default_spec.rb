@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 
 describe 'phpenv::default' do
   describe 'with default configuration' do
-    subject { ChefSpec::Runner.new.converge(described_recipe) }
+    subject { ChefSpec::ServerRunner.new.converge(described_recipe) }
 
     it 'should includes recipes' do
       expect(subject).to include_recipe('apt')
@@ -105,7 +105,7 @@ describe 'phpenv::default' do
 
   describe 'with override configuration' do
     let(:subject) do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::ServerRunner.new do |node|
         node.set['phpenv']['root_path'] = '/home/got/.phpenv'
         node.set['phpenv']['group_users'] = ['vagrant']
         node.set['phpenv']['user'] = 'got'
