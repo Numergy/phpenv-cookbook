@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the phpenv cookbook.
 
+## 0.5.0
+
+- [Pierre Rambaud] - Update dependencies
+
 ## 0.4.0
 
 - [Pierre Rambaud] - Add libssl and libreadline packages
