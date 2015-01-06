@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the phpenv cookbook.
 
+## 0.5.1
+
+- [Pierre Rambaud] - Fix typo
+
 ## 0.5.0
 
 - [Pierre Rambaud] - Update dependencies
