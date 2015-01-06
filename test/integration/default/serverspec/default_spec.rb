@@ -70,5 +70,5 @@ describe file('/tmp/testfile') do
 end
 
 describe command('/opt/phpenv/bin/phpenv global') do
-  it { should return_stdout '5.4.0' }
+  its(:stdout) { should match(/5.4.0/) }
 end
