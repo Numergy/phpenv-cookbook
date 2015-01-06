@@ -194,7 +194,7 @@ phpenv_build '5.3.28'
 
 ### phpenv_script
 
-This resource is a wrapper for the `script` resource which wraps the code block in an `pĥpenv`-aware environment.
+This resource is a wrapper for the `script` resource which wraps the code block in an `phpenv`-aware environment.
 See the Opscode [script resource][script_resource] documentation for more details.
 
 #### Actions
