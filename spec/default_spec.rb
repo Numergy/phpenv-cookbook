@@ -8,6 +8,7 @@ describe 'phpenv::default' do
 
     it 'should includes recipes' do
       expect(subject).to include_recipe('apt')
+      expect(subject).to include_recipe('build-essential')
     end
 
     it 'should install packages' do
