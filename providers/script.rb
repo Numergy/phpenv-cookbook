@@ -46,9 +46,11 @@ private
 def build_script_code
   script = []
   script << %(export PHPENV_ROOT="#{phpenv_root}")
+  script << %(export RBENV_ROOT="#{phpenv_root}")
   script << %(export PATH="${PHPENV_ROOT}/bin:$PATH")
   script << %(eval "$(phpenv init -)")
   script << %(export PHPENV_VERSION="#{new_resource.phpenv_version}") if new_resource.phpenv_version
+  script << %(export RBENV_VERSION="#{new_resource.phpenv_version}") if new_resource.phpenv_version
   script << new_resource.code
   script.join("\n")
 end

@@ -32,7 +32,7 @@ describe 'Chef::Provider::PhpenvScript' do
     expect(@provider.action_run).to be_truthy
     expect(@runner).to run_script('execute-script').with(
       interpreter: 'bash',
-      code: "export PHPENV_ROOT=\"/home/got/.phpenv\"\nexport PATH=\"${PHPENV_ROOT}/bin:$PATH\"\neval \"$(phpenv init -)\"\n",
+      code: "export PHPENV_ROOT=\"/home/got/.phpenv\"\nexport RBENV_ROOT=\"/home/got/.phpenv\"\nexport PATH=\"${PHPENV_ROOT}/bin:$PATH\"\neval \"$(phpenv init -)\"\n",
       user: nil,
       root_path: nil,
       creates: nil,
@@ -61,7 +61,7 @@ describe 'Chef::Provider::PhpenvScript' do
     @resource.send('code', './my-awesome-script.php')
     expect(@provider.action_run).to be_truthy
     expect(@runner).to run_script('execute-script').with(
-      code: "export PHPENV_ROOT=\"/home/got\"\nexport PATH=\"${PHPENV_ROOT}/bin:$PATH\"\neval \"$(phpenv init -)\"\nexport PHPENV_VERSION=\"5.5.0\"\n./my-awesome-script.php",
+      code: "export PHPENV_ROOT=\"/home/got\"\nexport RBENV_ROOT=\"/home/got\"\nexport PATH=\"${PHPENV_ROOT}/bin:$PATH\"\neval \"$(phpenv init -)\"\nexport PHPENV_VERSION=\"5.5.0\"\nexport RBENV_VERSION=\"5.5.0\"\n./my-awesome-script.php",
       user: 'got',
       creates: '/tmp/lockfile',
       cwd: '/etc',

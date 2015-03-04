@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the phpenv cookbook.
 
-## 0.6.0
+## 0.7.0
 
 - [Pierre Rambaud] - Bug with PHPENV_VERSION environment variable, use RBENV_VERSION instead.
 
