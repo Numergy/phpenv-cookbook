@@ -47,8 +47,10 @@ class Chef
 
       def wrap_shim_cmd(cmd)
         [%(export PHPENV_ROOT="#{phpenv_root}"),
+         %(export RBENV_ROOT="#{phpenv_root}"),
          %(export PATH="$PHPENV_ROOT/bin:$PHPENV_ROOT/shims:$PATH"),
          %(export PHPENV_VERSION="#{new_resource.phpenv_version}"),
+         %(export RBENV_VERSION="#{new_resource.phpenv_version}"),
          %($PHPENV_ROOT/shims/#{cmd})
         ].join(' && ')
       end

@@ -23,8 +23,9 @@ end
 # Load custom resource
 module ResourceMixins
   def load_resource(cookbook, lwrp)
-    Chef::Resource::LWRPBase.build_from_file(cookbook, File.expand_path(File.join(
-      File.dirname(__FILE__), '../resources', "#{lwrp}.rb")), nil)
+    file_path = File.join(File.dirname(__FILE__), '../resources', "#{lwrp}.rb")
+    Chef::Resource::LWRPBase
+      .build_from_file(cookbook, File.expand_path(file_path), nil)
   end
 
   def unload_resource(cookbook, lwrp)
