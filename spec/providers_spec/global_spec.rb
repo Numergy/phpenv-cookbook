@@ -24,10 +24,6 @@ describe 'Chef::Provider::PhpenvGlobal' do
     @provider = Chef::Platform.provider_for_resource(@resource, :global)
   end
 
-  after(:each) do
-    unload_resource(cookbook, lwrp)
-  end
-
   it 'should run phpenv script without parameter' do
     expect(@provider.action_create).to be_truthy
     expect(@runner).to run_phpenv_script('phpenv global 5.4.0 (system)').with(

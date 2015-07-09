@@ -99,6 +99,12 @@ If you've used [rbenv][rbenv] or [pyenv][pyenv], this is a port of that concept 
     <td><tt>master</tt></td>
   </tr>
   <tr>
+    <td><tt>['phpenv']['php-build']['git_sync_path']</tt></td>
+    <td>String</td>
+    <td>Git repository cache path/td>
+    <td><tt>/tmp</tt></td>
+  </tr>
+  <tr>
     <td><tt>['phpenv']['php-build']['packages']</tt></td>
     <td>Array</td>
     <td>Packages to install</td>

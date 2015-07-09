@@ -16,10 +16,6 @@ describe 'Chef::Resource::PhpenvGlobal' do
     @resource = load_resource(cookbook, lwrp).new('5.4.0')
   end
 
-  after(:each) do
-    unload_resource(cookbook, lwrp)
-  end
-
   it 'should set the name and version' do
     expect(@resource.name).to eq('5.4.0')
     expect(@resource.phpenv_version).to eq('5.4.0')

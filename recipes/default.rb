@@ -38,7 +38,7 @@ user node['phpenv']['user'] do
   home node['phpenv']['user_home']
 end
 
-git '/tmp/phpenv' do
+git "#{node['phpenv']['php-build']['git_sync_path']}/phpenv" do
   user node['phpenv']['user']
   group node['phpenv']['group']
   repository node['phpenv']['git_repository']
@@ -57,7 +57,7 @@ end
 execute 'install-phpenv' do
   group node['phpenv']['group']
   user node['phpenv']['user']
-  cwd '/tmp/phpenv/bin'
+  cwd "#{node['phpenv']['php-build']['git_sync_path']}/phpenv/bin"
   command './phpenv-install.sh'
   environment 'PHPENV_ROOT' => dst_dir if dst_dir
   not_if do

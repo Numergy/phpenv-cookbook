@@ -24,12 +24,8 @@ end
 module ResourceMixins
   def load_resource(cookbook, lwrp)
     file_path = File.join(File.dirname(__FILE__), '../resources', "#{lwrp}.rb")
-    Chef::Resource::LWRPBase
-      .build_from_file(cookbook, File.expand_path(file_path), nil)
-  end
-
-  def unload_resource(cookbook, lwrp)
-    Chef::Resource.send(:remove_const, lwrp_const(cookbook, lwrp))
+    resource = Chef::Resource::LWRPBase.build_from_file(cookbook, File.expand_path(file_path), nil)
+    resource == true ? loaded_resource(cookbook, lwrp) : resource
   end
 
   def resource_klass(cookbook, lwrp)
@@ -38,5 +34,9 @@ module ResourceMixins
 
   def lwrp_const(cookbook, lwrp)
     "#{cookbook.capitalize}#{lwrp.capitalize}"
+  end
+
+  def loaded_resource(cookbook, lwrp)
+    Chef::Resource.deprecated_constants[lwrp_const(cookbook, lwrp).intern]
   end
 end

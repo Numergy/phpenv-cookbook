@@ -24,10 +24,6 @@ describe 'Chef::Provider::PhpenvBuild' do
     @provider = Chef::Platform.provider_for_resource(@resource, :build)
   end
 
-  after(:each) do
-    unload_resource(cookbook, lwrp)
-  end
-
   it 'should run phpenv build without parameter' do
     expect(@provider.action_run).to be_truthy
     expect(@runner).to run_phpenv_script('phpenv install 5.5.0 (system)').with(

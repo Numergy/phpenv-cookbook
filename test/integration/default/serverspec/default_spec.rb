@@ -37,7 +37,7 @@ require 'spec_helper'
   end
 end
 
-describe file('/tmp/phpenv') do
+describe file("#{node['phpenv']['php-build']['git_sync_path']}/phpenv") do
   it { should be_directory }
 end
 
