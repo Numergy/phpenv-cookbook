@@ -16,10 +16,6 @@ describe 'Chef::Resource::PhpenvScript' do
     @resource = load_resource(cookbook, lwrp).new('awesome-script')
   end
 
-  after(:each) do
-    unload_resource(cookbook, lwrp)
-  end
-
   it 'should set the name' do
     expect(@resource.name).to eq('awesome-script')
   end
