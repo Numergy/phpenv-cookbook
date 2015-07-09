@@ -33,6 +33,7 @@ default['phpenv']['git_reference'] = 'master'
 default['phpenv']['php-build']['git_force_update'] = false
 default['phpenv']['php-build']['git_repository'] = 'https://github.com/CHH/php-build.git'
 default['phpenv']['php-build']['git_reference'] = 'master'
+default['phpenv']['php-build']['git_sync_path'] = '/tmp'
 
 case platform
 when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
