@@ -21,7 +21,7 @@ describe 'Chef::Provider::PhpenvBuild' do
   before(:each) do
     @resource = load_resource(cookbook, lwrp).new('5.5.0')
     @resource.run_context = @runner.run_context
-    @provider = Chef::Platform.provider_for_resource(@resource, :build)
+    @provider = @resource.provider_for_action(lwrp)
   end
 
   it 'should run phpenv build without parameter' do
@@ -30,7 +30,8 @@ describe 'Chef::Provider::PhpenvBuild' do
       code: 'phpenv install 5.5.0',
       user: nil,
       root_path: nil,
-      environment: nil
+      environment: nil,
+      timeout: nil
     )
   end
 
@@ -38,12 +39,14 @@ describe 'Chef::Provider::PhpenvBuild' do
     @resource.send('root_path', '/home/got')
     @resource.send('user', 'got')
     @resource.send('environment', 'TEST' => 'something')
+    @resource.send('timeout', 1337)
     expect(@provider.action_run).to be_truthy
     expect(@runner).to run_phpenv_script('phpenv install 5.5.0 (got)').with(
       code: 'phpenv install 5.5.0',
       user: 'got',
       root_path: '/home/got',
-      environment: { 'TEST' => 'something' }
+      environment: { 'TEST' => 'something' },
+      timeout: 1337
     )
   end
 end

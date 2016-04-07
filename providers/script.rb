@@ -18,6 +18,8 @@
 # limitations under the License.
 #
 
+use_inline_resources
+
 include Chef::Phpenv::Mixin
 
 action :run do
@@ -39,26 +41,4 @@ action :run do
   end.run_action(:run)
 
   new_resource.updated_by_last_action(true)
-end
-
-private
-
-def build_script_code
-  script = []
-  script << %(export PHPENV_ROOT="#{phpenv_root}")
-  script << %(export RBENV_ROOT="#{phpenv_root}")
-  script << %(export PATH="${PHPENV_ROOT}/bin:$PATH")
-  script << %(eval "$(phpenv init -)")
-  script << %(export PHPENV_VERSION="#{new_resource.phpenv_version}") if new_resource.phpenv_version
-  script << %(export RBENV_VERSION="#{new_resource.phpenv_version}") if new_resource.phpenv_version
-  script << new_resource.code
-  script.join("\n")
-end
-
-def build_script_environment
-  script_env = { 'PHPENV_ROOT' => phpenv_root }
-  script_env.merge!(new_resource.environment) if new_resource.environment
-
-  script_env.merge!('USER' => new_resource.user, 'HOME' => user_home) if new_resource.user
-  script_env
 end

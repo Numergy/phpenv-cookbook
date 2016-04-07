@@ -54,6 +54,31 @@ class Chef
          %($PHPENV_ROOT/shims/#{cmd})
         ].join(' && ')
       end
+
+      def build_script_code
+        script = []
+        script << %(export PHPENV_ROOT="#{phpenv_root}")
+        script << %(export RBENV_ROOT="#{phpenv_root}")
+        script << %(export PATH="${PHPENV_ROOT}/bin:$PATH")
+        script << %(eval "$(phpenv init -)")
+        script << %(export PHPENV_VERSION="#{new_resource.phpenv_version}") if new_resource.phpenv_version
+        script << %(export RBENV_VERSION="#{new_resource.phpenv_version}") if new_resource.phpenv_version
+        script << new_resource.code
+        script.join("\n")
+      end
+
+      def build_script_environment
+        script_env = { 'PHPENV_ROOT' => phpenv_root }
+        script_env.merge!(new_resource.environment) if new_resource.environment
+
+        if new_resource.user
+          script_env['USER'] = new_resource.user
+          script_env['HOME'] = user_home
+          script_env
+        end
+
+        script_env
+      end
     end
   end
 end

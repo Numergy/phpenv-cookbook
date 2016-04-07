@@ -18,6 +18,8 @@
 # limitations under the License.
 #
 
+use_inline_resources
+
 include Chef::Phpenv::Mixin
 
 action :run do
@@ -50,6 +52,7 @@ def execute_script
     user new_resource.user if new_resource.user
     root_path new_resource.root_path if new_resource.root_path
     environment new_resource.environment if new_resource.environment
+    timeout new_resource.timeout if new_resource.timeout
     action :nothing
   end.run_action(:run)
 end

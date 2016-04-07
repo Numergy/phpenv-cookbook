@@ -21,7 +21,7 @@ describe 'Chef::Provider::PhpenvScript' do
   before(:each) do
     @resource = load_resource(cookbook, lwrp).new('execute-script')
     @resource.run_context = @runner.run_context
-    @provider = Chef::Platform.provider_for_resource(@resource, :script)
+    @provider = @resource.provider_for_action(lwrp)
   end
 
   it 'should run phpenv script without parameter' do
