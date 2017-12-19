@@ -35,7 +35,7 @@ default['phpenv']['php-build']['git_repository'] = 'https://github.com/CHH/php-b
 default['phpenv']['php-build']['git_reference'] = 'master'
 default['phpenv']['php-build']['git_sync_path'] = '/tmp'
 
-case platform
+case node[:platform]
 when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
   default['phpenv']['packages'] = %w(
     git
