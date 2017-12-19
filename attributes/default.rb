@@ -50,7 +50,7 @@ when 'debian', 'ubuntu', 'suse'
     libcurl4-openssl-dev
     libdb-dev
     libjpeg-dev
-    libpng12-dev
+    libpng-dev
     libxpm-dev
     libfreetype6-dev
     libmysqlclient-dev
