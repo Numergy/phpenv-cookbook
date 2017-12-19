@@ -55,7 +55,6 @@ when 'debian', 'ubuntu', 'suse'
     libfreetype6-dev
     libmysqlclient-dev
     postgresql-server-dev-all
-    libt1-dev
     libgd2-xpm-dev
     libgmp-dev
     libsasl2-dev
