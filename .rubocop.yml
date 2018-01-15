@@ -10,10 +10,22 @@ AllCops:
     - cookbooks/**/*
     - vendor/**/*
 
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
+
+Style/MixinUsage:
+  Exclude:
+    - providers/**/*.rb
+
 Encoding:
   Exclude:
     - '**/metadata.rb'
     - Gemfile
+    - Rakefile
+
+Naming/FileName:
+  Enabled: false
 
 NumericLiterals:
   Enabled: false

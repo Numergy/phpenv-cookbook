@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Cookbook Name:: phpenv
 # Providers:: global
 #
@@ -33,8 +31,6 @@ action :create do
 
       action :nothing
     end.run_action(:run)
-
-    new_resource.updated_by_last_action(true)
   else
     Chef::Log.debug("#{new_resource} is already set - nothing to do")
   end

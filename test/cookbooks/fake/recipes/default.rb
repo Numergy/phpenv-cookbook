@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 phpenv_build '5.4.0'
 phpenv_global '5.4.0'
 

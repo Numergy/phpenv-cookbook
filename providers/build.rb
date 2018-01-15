@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Cookbook Name:: phpenv
 # Providers:: build
 #
@@ -24,7 +22,6 @@ include Chef::Phpenv::Mixin
 
 action :run do
   perform_install
-  new_resource.updated_by_last_action(true)
 end
 
 private

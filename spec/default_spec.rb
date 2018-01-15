@@ -1,18 +1,16 @@
-# -*- coding: utf-8 -*-
-
 require_relative 'spec_helper'
 
 describe 'phpenv::default' do
   describe 'with default configuration' do
     subject { ChefSpec::ServerRunner.new.converge(described_recipe) }
 
-    it 'should includes recipes' do
+    it 'should includes some recipes' do
       expect(subject).to include_recipe('apt')
       expect(subject).to include_recipe('build-essential')
     end
 
     it 'should install packages' do
-      %w(
+      %w[
         re2c
         libsqlite0-dev
         libxml2-dev
@@ -21,12 +19,11 @@ describe 'phpenv::default' do
         libcurl4-openssl-dev
         libdb-dev
         libjpeg-dev
-        libpng12-dev
+        libpng-dev
         libxpm-dev
         libfreetype6-dev
         libmysqlclient-dev
         postgresql-server-dev-all
-        libt1-dev
         libgd2-xpm-dev
         libgmp-dev
         libsasl2-dev
@@ -41,7 +38,7 @@ describe 'phpenv::default' do
         libssl-dev
         libreadline-dev
         git
-      ).each do |pkg|
+      ].each do |pkg|
         expect(subject).to install_package(pkg)
       end
     end
@@ -58,7 +55,7 @@ describe 'phpenv::default' do
       expect(subject).to create_user('phpenv').with(
         group: 'phpenv',
         shell: '/bin/bash',
-        supports: { manage_home: true },
+        manage_home: true,
         home: '/home/phpenv'
       )
     end
@@ -107,17 +104,17 @@ describe 'phpenv::default' do
   describe 'with override configuration' do
     let(:subject) do
       ChefSpec::ServerRunner.new do |node|
-        node.set['phpenv']['root_path'] = '/home/got/.phpenv'
-        node.set['phpenv']['group_users'] = ['vagrant']
-        node.set['phpenv']['user'] = 'got'
-        node.set['phpenv']['user_home'] = '/home/got'
-        node.set['phpenv']['manage_home'] = false
-        node.set['phpenv']['group'] = 'got'
-        node.set['phpenv']['git_force_update'] = true
-        node.set['phpenv']['git_reference'] = 'dev'
-        node.set['phpenv']['php-build']['git_force_update'] = true
-        node.set['phpenv']['create_profiled'] = false
-        node.set['phpenv']['php-build']['git_reference'] = 'dev'
+        node.override['phpenv']['root_path'] = '/home/got/.phpenv'
+        node.override['phpenv']['group_users'] = ['vagrant']
+        node.override['phpenv']['user'] = 'got'
+        node.override['phpenv']['user_home'] = '/home/got'
+        node.override['phpenv']['manage_home'] = false
+        node.override['phpenv']['group'] = 'got'
+        node.override['phpenv']['git_force_update'] = true
+        node.override['phpenv']['git_reference'] = 'dev'
+        node.override['phpenv']['php-build']['git_force_update'] = true
+        node.override['phpenv']['create_profiled'] = false
+        node.override['phpenv']['php-build']['git_reference'] = 'dev'
       end.converge(described_recipe)
     end
 
@@ -140,7 +137,7 @@ describe 'phpenv::default' do
       expect(subject).to create_user('got').with(
         group: 'got',
         shell: '/bin/bash',
-        supports: { manage_home: false },
+        manage_home: false,
         home: '/home/got'
       )
     end

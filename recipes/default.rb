@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Cookbook Name:: phpenv
 # Recipe:: default
 #
@@ -34,7 +32,7 @@ end
 user node['phpenv']['user'] do
   shell '/bin/bash'
   group node['phpenv']['group']
-  supports manage_home: node['phpenv']['manage_home']
+  manage_home node['phpenv']['manage_home']
   home node['phpenv']['user_home']
 end
 

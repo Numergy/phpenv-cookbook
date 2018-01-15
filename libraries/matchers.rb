@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 if defined?(ChefSpec)
   def run_phpenv_script(resource_name)
     ChefSpec::Matchers::ResourceMatcher.new(:phpenv_script, :run, resource_name)

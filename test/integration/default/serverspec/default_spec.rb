@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
-
 require 'spec_helper'
 
-%w(
+%w[
   re2c
   libsqlite0-dev
   libxml2-dev
@@ -11,12 +9,11 @@ require 'spec_helper'
   libcurl4-openssl-dev
   libdb-dev
   libjpeg-dev
-  libpng12-dev
+  libpng-dev
   libxpm-dev
   libfreetype6-dev
   libmysqlclient-dev
   postgresql-server-dev-all
-  libt1-dev
   libgd2-xpm-dev
   libgmp-dev
   libsasl2-dev
@@ -31,7 +28,7 @@ require 'spec_helper'
   libssl-dev
   libreadline-dev
   git
-).each do |pkg|
+].each do |pkg|
   describe package(pkg) do
     it { should be_installed }
   end
@@ -50,7 +47,7 @@ describe group('phpenv') do
   it { should exist }
 end
 
-%w(/home/phpenv /opt/phpenv/plugins /opt/phpenv /opt/phpenv/plugins/php-build).each do |dir_name|
+%w[/home/phpenv /opt/phpenv/plugins /opt/phpenv /opt/phpenv/plugins/php-build].each do |dir_name|
   describe file(dir_name) do
     it { should be_directory }
     it { should be_owned_by 'phpenv' }

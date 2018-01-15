@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Cookbook Name:: phpenv
 # Resource:: script
 #
@@ -20,6 +18,7 @@
 
 actions :run
 default_action :run
+resource_name :phpenv_script
 
 attribute :name, kind_of: String, name_attribute: true
 attribute :phpenv_version, kind_of: String
@@ -35,7 +34,4 @@ attribute :timeout, kind_of: Integer
 attribute :user, kind_of: String
 attribute :umask, kind_of: String
 
-def initialize(*args)
-  super
-  @action = :run
-end
+default_action :run

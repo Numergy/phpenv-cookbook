@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Cookbook Name:: phpenv
 # Providers:: script
 #
@@ -33,12 +31,9 @@ action :run do
     creates new_resource.creates if new_resource.creates
     cwd new_resource.cwd if new_resource.cwd
     group new_resource.group if new_resource.group
-    path new_resource.path if new_resource.path
     returns new_resource.returns if new_resource.returns
     timeout new_resource.timeout if new_resource.timeout
     environment script_environment
     action :nothing
   end.run_action(:run)
-
-  new_resource.updated_by_last_action(true)
 end

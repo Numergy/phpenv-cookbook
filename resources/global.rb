@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Cookbook Name:: phpenv
 # Resource:: global
 #
@@ -20,15 +18,13 @@
 
 actions :create
 default_action :create
+resource_name :phpenv_global
 
 attribute :phpenv_version, kind_of: String, name_attribute: true
 attribute :user, kind_of: String
 attribute :root_path, kind_of: String
 
-def initialize(*args)
-  super
-  @action = :create
-end
+default_action :create
 
 def to_s
   "#{super} (#{@user || 'system'})"
