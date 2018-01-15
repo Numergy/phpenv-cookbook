@@ -1,9 +1,12 @@
 {
   "hostname": "precise64",
   "fqdn": "precise64",
-  "platform": "ubuntu",
-  "platform_version": "12.04",
+  "platform": "debian",
+  "platform_version": "9.3",
   "platform_family": "debian",
+  "kernel": {
+    "machine": "x86_64"
+  },
   "etc": {
     "passwd": {
       "root": {

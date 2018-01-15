@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Cookbook Name:: phpenv
 # Resource:: build
 #
@@ -19,6 +17,7 @@
 #
 actions :run
 default_action :run
+resource_name :phpenv_build
 
 attribute :version, kind_of: String, name_attribute: true
 attribute :root_path, kind_of: String
@@ -26,11 +25,7 @@ attribute :user, kind_of: String
 attribute :environment, kind_of: Hash
 attribute :timeout, kind_of: Integer
 
-def initialize(*args)
-  super
-  @action = :run
-  @phpenv_version = @version
-end
+default_action :run
 
 def to_s
   "#{super} (#{@user || 'system'})"

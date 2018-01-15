@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Cookbook Name:: phpenv
 # Attributes:: default
 #
@@ -35,13 +33,13 @@ default['phpenv']['php-build']['git_repository'] = 'https://github.com/CHH/php-b
 default['phpenv']['php-build']['git_reference'] = 'master'
 default['phpenv']['php-build']['git_sync_path'] = '/tmp'
 
-case node[:platform]
+case node['platform']
 when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
-  default['phpenv']['packages'] = %w(
+  default['phpenv']['packages'] = %w[
     git
-  )
+  ]
 when 'debian', 'ubuntu', 'suse'
-  default['phpenv']['packages'] = %w(
+  default['phpenv']['packages'] = %w[
     re2c
     libsqlite0-dev
     libxml2-dev
@@ -69,9 +67,9 @@ when 'debian', 'ubuntu', 'suse'
     libssl-dev
     libreadline-dev
     git
-  )
+  ]
 when 'freebsd'
-  default['phpenv']['packages'] = %w(
+  default['phpenv']['packages'] = %w[
     git
-  )
+  ]
 end
